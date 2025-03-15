@@ -56,7 +56,7 @@ public class ReadCube : MonoBehaviour
 
         cubeMap.Set();
     }
-    
+
     void SetRayTransform()
     {
         upRays = BuildRays(tUp, new Vector3(90, 90, 0));
@@ -77,7 +77,7 @@ public class ReadCube : MonoBehaviour
         {
             for (int x = -1; x < 2; x++)
             {
-                Vector3 startPos = new Vector3( rayTransform.localPosition.x + x,
+                Vector3 startPos = new Vector3(rayTransform.localPosition.x + x,
                     rayTransform.localPosition.y + y,
                     rayTransform.localPosition.z);
                 GameObject rayStart = Instantiate(emptyGO, startPos, Quaternion.identity, rayTransform);
@@ -88,14 +88,13 @@ public class ReadCube : MonoBehaviour
         }
         rayTransform.localRotation = Quaternion.Euler(direction);
         return rays;
-
     }
 
     public List<GameObject> ReadFace(List<GameObject> rayStarts, Transform rayTransform)
     {
         List<GameObject> facesHit = new List<GameObject>();
 
-        foreach(GameObject rayStart in rayStarts)
+        foreach (GameObject rayStart in rayStarts)
         {
             Vector3 ray = rayStart.transform.position;
             RaycastHit hit;

@@ -55,23 +55,23 @@ public class PivotRotation : MonoBehaviour
         }
         if (side == cubeState.Back)
         {
-            rotation.x = (mouseOffset.x + mouseOffset.y) * sensitivity* -1;
+            rotation.x = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
         }
         if (side == cubeState.Up)
         {
-            rotation.y = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
+            rotation.y = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
         }
         if (side == cubeState.Down)
         {
-            rotation.y = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
+            rotation.y = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
         }
         if (side == cubeState.Left)
         {
-            rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
+            rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
         }
         if (side == cubeState.Right)
         {
-            rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * 1;
+            rotation.z = (mouseOffset.x + mouseOffset.y) * sensitivity * -1;
         }
         transform.Rotate(rotation, Space.Self);
         mouseRef = Input.mousePosition;
@@ -79,7 +79,6 @@ public class PivotRotation : MonoBehaviour
 
     public void Rotate(List<GameObject> side)
     {
-        print("rotate »£√‚µ ");
         activeSide = side;
         mouseRef = Input.mousePosition;
         dragging = true;
@@ -120,7 +119,6 @@ public class PivotRotation : MonoBehaviour
             CubeState.autoRotating = false;
             autoRotating = false;
             dragging = false;
-
         }
     }
 }

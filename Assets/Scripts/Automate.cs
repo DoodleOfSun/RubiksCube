@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Automate : MonoBehaviour
 {
+    [HideInInspector] public bool isShuffle = false;
+    public Text shuffleText;
+
     public static List<string> moveList = new List<string>() {};
     private readonly List<string> allMoves = new List<string>()
         {
@@ -19,6 +23,7 @@ public class Automate : MonoBehaviour
     {
         cubeState = FindObjectOfType<CubeState>();
         readCube = FindObjectOfType<ReadCube>();
+        shuffleText.enabled = false;
     }
 
     // Update is called once per frame
@@ -33,15 +38,24 @@ public class Automate : MonoBehaviour
 
     public void Shuffle()
     {
-        Debug.Log("º≈«√ »£√‚µ ");
         List<string> moves = new List<string>();
         int shuffleLength = Random.Range(10, 30);
+        StartCoroutine(DisableClicking(shuffleLength / 2 + 1));
         for (int i = 0; i < shuffleLength; i++)
         {
             int randomMove = Random.Range(0, allMoves.Count);
             moves.Add(allMoves[randomMove]);
         }
         moveList = moves;
+    }
+
+    IEnumerator DisableClicking(int waitingTime)
+    {
+        shuffleText.enabled = true;
+        isShuffle = true;
+        yield return new WaitForSeconds(waitingTime);
+        isShuffle = false;
+        shuffleText.enabled = false;
     }
 
     void DoMove(string move)

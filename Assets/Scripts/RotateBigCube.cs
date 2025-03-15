@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RotateBigCube : MonoBehaviour
 {
+    Automate auto;
     Vector2 firstPressPos;
     Vector2 secondPressPos;
     Vector2 currentSwipe;
@@ -17,7 +18,7 @@ public class RotateBigCube : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        auto = FindObjectOfType<Automate>();
     }
 
     // Update is called once per frame
@@ -29,6 +30,11 @@ public class RotateBigCube : MonoBehaviour
 
     void Drag()
     {
+        if (auto.isShuffle)
+        {
+            return;
+        }
+
         if (Input.GetMouseButton(1))
         {
             mouseDelta = Input.mousePosition - previousMousePosition;
@@ -48,10 +54,14 @@ public class RotateBigCube : MonoBehaviour
 
     void Swipe()
     {
+        if (auto.isShuffle)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(1))
         {
             firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            //print(firstPressPos);
         }
         if (Input.GetMouseButtonUp(1))
         {
